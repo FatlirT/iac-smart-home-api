@@ -1,0 +1,33 @@
+#!/bin/bash
+su - ubuntu -c "
+
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash 
+    # installs the node version manager
+
+    . ~/.nvm/nvm.sh 
+    # sets up the link so we can use nvm command
+
+    nvm install --lts 
+    # installs the latest version of NodeJS and the accompanying Node Package Manager for that version
+
+    npm install pm2@latest -g
+    # installs pm2 globally
+
+    sudo apt-get update
+    sudo apt-get upgrade -y
+
+    bash
+
+    sudo apt-get install awscli -y
+
+
+    aws configure set region eu-west-2
+
+    sudo apt install dos2unix -y
+
+    aws secretsmanager get-secret-value --secret-id ce-smart-home --query SecretString --output text > .ssh/ce-smart-home
+    dos2unix .ssh/ce-smart-home
+
+    echo -e 'Host github.com\n HostName github.com\n User git\n StrictHostKeyChecking no\n IdentityFile .ssh/ce-smart-home' >> .ssh/config
+
+    chmod 400 .ssh/ce-smart-home
