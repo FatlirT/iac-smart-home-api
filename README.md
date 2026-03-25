@@ -360,15 +360,6 @@ terraform apply -var-file="terraform.tfvars"
 
 ---
 
-## Example Terraform Workflow
-
-```bash
-terraform fmt -recursive
-terraform validate
-terraform plan -var-file="terraform.tfvars"
-terraform apply -var-file="terraform.tfvars"
-```
-
 To destroy:
 
 ```bash
@@ -377,9 +368,9 @@ terraform destroy -var-file="terraform.tfvars"
 
 ---
 
-## Security Notes
+## Security / Reliability Notes
 
-This project intentionally demonstrates several real-world infrastructure patterns, but before using it in production you should consider:
+Project was for for practicing Terraform and should be made more secure and reliable for use in production by:
 
 - Restricting public ingress further (e.g. behind an **Application Load Balancer** instead of direct EC2 exposure)
 - Avoiding committed environment variable files with real values
@@ -393,69 +384,18 @@ This project intentionally demonstrates several real-world infrastructure patter
 
 ## Suggested Improvements / Roadmap
 
-Future enhancements that would make this production-grade:
+Future enhancements:
 
-- [ ] Add **Application Load Balancer (ALB)** for public services
-- [ ] Add **Route 53** DNS records
-- [ ] Add **ACM** for HTTPS/TLS termination
-- [ ] Add **CloudWatch logs/metrics/alarms**
 - [ ] Add **Auto Scaling Groups**
-- [ ] Move compute to **ECS Fargate** or **EKS**
-- [ ] Store state remotely in **S3 + DynamoDB locking**
-- [ ] Split environments (`dev`, `staging`, `prod`)
-- [ ] Parameterise AMIs via data sources
-- [ ] Add CI/CD validation (e.g. GitHub Actions)
-- [ ] Add outputs for public IPs / private IPs / instance IDs
-- [ ] Add security hardening (least privilege, no broad ingress)
 - [ ] Replace direct app bootstrapping with immutable image or user-data templates
+- [ ] Parameterise AMIs via data sources
 
----
+- [ ] Harden security with remote state
+      
+- [ ] Containerise with Docker and move compute to **ECS Fargate** or **EKS**
+- [ ] Add CICD pipeline (e.g. GitHub Actions)
+- [ ] Add **CloudWatch logs/metrics/alarms**
 
-## Why This Project Matters
-
-This repository demonstrates practical cloud engineering skills across:
-
-- **Terraform module design**
-- **AWS networking**
-- **public/private subnet architecture**
-- **security group segmentation**
-- **EC2 provisioning**
-- **DynamoDB integration**
-- **IAM least-privilege concepts**
-- **microservice infrastructure layout**
-
-It’s a strong example of building **real-world AWS infrastructure from scratch** for a distributed backend system.
-
----
-
-## Portfolio Value
-
-If you’re using this as part of a portfolio, this project showcases:
-
-- Infrastructure as Code on AWS
-- Cloud architecture decision-making
-- Reusable module design
-- Security-aware network segmentation
-- Multi-service deployment patterns
-- Foundations for scalable platform engineering / cloud engineering roles
-
----
-
-## License
-
-This project is currently unlicensed.
-
-If you want others to view and reuse it safely, consider adding an MIT License:
-
-```bash
-LICENSE
-```
-
-Example:
-- MIT
-- Apache 2.0
-
----
 
 ## Author
 
